@@ -23,3 +23,6 @@
 
 # Ignore Coverage
 /coverage
+
+# Ignore Spotify credentials
+/config/initializers/spotify_setup.rb
