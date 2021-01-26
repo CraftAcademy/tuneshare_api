@@ -3,9 +3,12 @@ Coveralls.wear_merged!('rails')
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 require 'spec_helper'
+require 'webmock/rspec'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -24,4 +27,11 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include ResponseJson
+  config.before(:each) do
+    fixture_file = File.open("#{fixture_path}/search_results.json").read
+    stub_request(
+      :get,
+      'https://api.spotify.com/v1/search?limit=20&offset=0&q=All%20I%20Want%20for%20Christmas%20Is%20You&type=track'
+     ).to_return(status: 200, body: fixture_file, headers: {})
+  end
 end

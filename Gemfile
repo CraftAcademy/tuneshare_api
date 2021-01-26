@@ -8,6 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', require: 'rack/cors'
+gem 'rspotify'
 
 group :development, :test do
   gem 'pry-rails'
@@ -16,6 +17,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'coveralls', require: false
+  gem 'webmock'
 end
 
 group :development do
