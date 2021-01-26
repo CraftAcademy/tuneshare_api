@@ -6,9 +6,11 @@ class Api::PostsController < ApplicationController
 
   def create
     post = Post.create(post_params)
-    render json: { message: 'Your post was successfully created!' }, status: 201 if post.persisted?
-  rescue StandardError => e
-    render json: { message: e.message }, status: 404
+    if post.persisted?
+      render json: { message: 'Your post was successfully created!' }, status: 201
+    else
+      render json: { message: post.errors.messages.flatten.flatten.to_sentence }, status: 422
+    end
   end
 
   private
