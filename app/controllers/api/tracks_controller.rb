@@ -17,7 +17,6 @@ class Api::TracksController < ApplicationController
       artists: spotify_track.artists[0].name,
       image: spotify_track.album.images[0]['url'],
       preview: spotify_track.preview_url
-
     }
   end
 end
