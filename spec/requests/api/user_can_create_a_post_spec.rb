@@ -4,10 +4,10 @@ RSpec.describe 'POST /api/posts', type: :request do
       post '/api/posts',
            params: {
              post: {
-               track_name: 'One Beer',
+               track: 'One Beer',
                artists: 'MF DOOM',
                image: 'https://i.scdn.co/image/ab67616d0000b27378c9eee96fec41ec24c0ae1c',
-               preview_url: 'https://p.scdn.co/mp3-preview/4ae054ff5e142a8aef2018c4f83e00d1ac764370?cid=9165f2ed52ac4632b2c23038c2fbe1d9',
+               preview: 'https://p.scdn.co/mp3-preview/4ae054ff5e142a8aef2018c4f83e00d1ac764370?cid=9165f2ed52ac4632b2c23038c2fbe1d9',
                description: 'I listen to this when Im drinking beer'
              }
            }
@@ -28,7 +28,7 @@ RSpec.describe 'POST /api/posts', type: :request do
              post: {
                artists: 'MF DOOM',
                image: 'https://i.scdn.co/image/ab67616d0000b27378c9eee96fec41ec24c0ae1c',
-               preview_url: 'https://p.scdn.co/mp3-preview/4ae054ff5e142a8aef2018c4f83e00d1ac764370?cid=9165f2ed52ac4632b2c23038c2fbe1d9',
+               preview: 'https://p.scdn.co/mp3-preview/4ae054ff5e142a8aef2018c4f83e00d1ac764370?cid=9165f2ed52ac4632b2c23038c2fbe1d9',
                description: 'I listen to this when Im drinking beer'
              }
            }
@@ -39,7 +39,7 @@ RSpec.describe 'POST /api/posts', type: :request do
     end
 
     it 'is expected to return a error message when track name missing' do
-      expect(response_json['message']).to eq "track_name and can't be blank"
+      expect(response_json['message']).to eq "Track can't be blank"
     end
   end
 end

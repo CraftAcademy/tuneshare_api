@@ -1,3 +1,3 @@
 class Post < ApplicationRecord
-  validates_presence_of :track_name, :artists, :image, :preview_url, :description
+  validates_presence_of :track, :artists, :image, :preview, :description
 end
