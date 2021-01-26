@@ -9,7 +9,7 @@ RSpec.describe 'GET /api/tracks', type: :request do
     end
 
     it 'is expected to return a list of songs that contain query param' do
-      expect(response_json['tracks'].count).to eq 20
+      expect(response_json['tracks'].count).to eq 3
     end
 
     it 'is expected to return a name of the song ' do
@@ -25,7 +25,7 @@ RSpec.describe 'GET /api/tracks', type: :request do
     end
 
     it 'is expected to return a preview url of the song' do
-      expect(response_json['tracks'][0]['preview']).to eq 'https://p.scdn.co/mp3-preview/bbafd15ff484394a0ca106d5fef0a81eeea4ef5b?cid=9165f2ed52ac4632b2c23038c2fbe1d9'
+      expect(response_json['tracks'][0]['preview']).to eq 'https://p.scdn.co/mp3-preview/bbafd15ff484394a0ca106d5fef0a81eeea4ef5b?cid=774b29d4f13844c495f206cafdad9c86'
     end
   end
 end
