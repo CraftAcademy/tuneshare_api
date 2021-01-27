@@ -1,7 +1,7 @@
 class Api::TracksController < ApplicationController
   def index
     if params[:query] = params['q']
-      spotify_tracks = RSpotify::Track.search(params[:q])      
+      spotify_tracks = RSpotify::Track.search(params[:q])
       tracks = spotify_tracks.map do |spotify_track|
         format_response(spotify_track)
       end
