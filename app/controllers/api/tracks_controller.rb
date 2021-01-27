@@ -13,7 +13,8 @@ class Api::TracksController < ApplicationController
 
   def format_response(spotify_track)
     {
-      name: spotify_track.name,
+      id: spotify_track.id,
+      track: spotify_track.name,
       artists: spotify_track.artists[0].name,
       image: spotify_track.album.images[0]['url'],
       preview: spotify_track.preview_url

@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2021_01_25_135243) do
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.string "track_name"
+    t.string "track"
     t.string "artists"
     t.text "image"
-    t.text "preview_url"
+    t.text "preview"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

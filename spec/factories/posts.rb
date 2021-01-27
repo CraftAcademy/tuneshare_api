@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :post do
-    track_name { "MyTrack" }
+    track { "MyTrack" }
     artists { "MyArtist" }
     image { "MyImage" }
-    preview_url { "MyPreview" }
+    preview { "MyPreview" }
     description { "MyDescription" }
   end
 end

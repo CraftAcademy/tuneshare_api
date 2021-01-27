@@ -12,8 +12,12 @@ RSpec.describe 'GET /api/tracks', type: :request do
       expect(response_json['tracks'].count).to eq 3
     end
 
+    it 'is expected to return an id of the song ' do
+      expect(response_json['tracks'][0]['id']).to eq '0bYg9bo50gSsH3LtXe2SQn'
+    end
+
     it 'is expected to return a name of the song ' do
-      expect(response_json['tracks'][0]['name']).to eq 'All I Want for Christmas Is You'
+      expect(response_json['tracks'][0]['track']).to eq 'All I Want for Christmas Is You'
     end
 
     it 'is expected to return an artist name of the song ' do

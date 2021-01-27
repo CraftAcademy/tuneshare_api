@@ -14,7 +14,7 @@ RSpec.describe 'GET /api/posts', type: :request do
     end
 
     it 'is expected to have a track name in the first post' do
-      expect(response_json['posts'][0]['track_name']).to eq 'MyTrack'
+      expect(response_json['posts'][0]['track']).to eq 'MyTrack'
     end
 
     it 'is expected to have an artist in the second post' do
