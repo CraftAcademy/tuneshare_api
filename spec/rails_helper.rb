@@ -36,7 +36,6 @@ RSpec.configure do |config|
       'https://api.spotify.com/v1/search?limit=20&offset=0&q=All%20I%20Want%20for%20Christmas%20Is%20You&type=track'
      ).to_return(status: 200, body: fixture_file, headers: {})
   end
-
   config.include AuthHelper
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
