@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
 
-  config.omniauth :spotify, Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret],
-    scope: 'user-read-email user-read-private user-library-read'
+  # config.omniauth :spotify, Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret],
+  #   scope: 'user-read-email user-read-private user-library-read'
 
 end

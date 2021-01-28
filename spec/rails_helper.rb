@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include ResponseJson
+  config.include OmniAuthFixtures, type: :request
   config.before(:each) do
     fixture_file = File.open("#{fixture_path}/search_results.json").read
     stub_request(
@@ -36,20 +37,20 @@ RSpec.configure do |config|
       'https://api.spotify.com/v1/search?limit=20&offset=0&q=All%20I%20Want%20for%20Christmas%20Is%20You&type=track'
      ).to_return(status: 200, body: fixture_file, headers: {})
   end
-  config.include AuthHelper
-  config.filter_run :focus
-  config.run_all_when_everything_filtered = true
-  if config.files_to_run.one?
-    config.default_formater ='doc'
-  end
-  config.profile_examples = 10
-  config.order = :random
-  Kernel.srand config.seed
-  config.exect_with :rspec do |expectations|
-    expectations.syntax = :expect
-  end
-  config.mock_with :rspec do |mocks|
-    mocks.syntax = :expect
-    mocks.verify_partial_doubles = true
-  end
+  # config.include AuthHelper
+  # config.filter_run :focus
+  # config.run_all_when_everything_filtered = true
+  # if config.files_to_run.one?
+  #   config.default_formater ='doc'
+  # end
+  # config.profile_examples = 10
+  # config.order = :random
+  # Kernel.srand config.seed
+  # # config.exect_with :rspec do |expectations|
+  # #   expectations.syntax = :expect
+  # # end
+  # config.mock_with :rspec do |mocks|
+  #   mocks.syntax = :expect
+  #   mocks.verify_partial_doubles = true
+  # end
 end
