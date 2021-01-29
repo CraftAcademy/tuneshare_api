@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Api
   class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
     include Devise::Controllers::Rememberable
@@ -17,13 +16,12 @@ module Api
       response.set_header('client', auth_params[:client_id])
       response.set_header('expiry', auth_params[:expiry])
       response.set_header('uid', auth_params[:uid])
-      response.set_header('spotify_credentials', auth_hash.credentials) #not sure about this at all
+      response.set_header('spotify_credentials', auth_hash.credentials) 
 
       render json: { user: @resource, spotify_info: auth_hash.info }
     end
 
     protected
-
 
     def auth_hash
       request.env['omniauth.auth']
