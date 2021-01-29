@@ -19,38 +19,41 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
       get '/auth/spotify/callback'
     end
 
-    it 'is expected to have a 200 http status' do 
+    it 'is expected to responde with http status 200' do 
       is_expected.to have_http_status 200
     end
 
-    it {
-      expect(json).to have_key('user').and have_key('spotify_info')
-    }
+    it 'is expected to responde with key user and spotify_info' do
+      expect(json)
+        .to have_key('user')
+        .and have_key('spotify_info')      
+    end
 
-    it {
+    it 'is expected to return user data' do
       expect(json['spotify_info'])
-      .to have_key('name')
-      .and have_value('Lara Thordardottir')
-      .and have_key('email')
-      .and have_value('lara@fakemail.com')
-    }
-    it {
-      expect(headers)
-      .to have_key('access-token')
-      .and have_key('client')
-      .and have_key('token-type')
-      .and have_key('expiry')
-      .and have_key('uid')
-      .and have_key('spotify_credentials')
-    }
+        .to have_key('name')
+        .and have_value('Lara Thordardottir')
+        .and have_key('email')
+        .and have_value('lara@fakemail.com')
+    end
 
-    it {
+    it 'is expected to have valide headers' do
+      expect(headers)
+        .to have_key('access-token')
+        .and have_key('client')
+        .and have_key('token-type')
+        .and have_key('expiry')
+        .and have_key('uid')
+        .and have_key('spotify_credentials')      
+    end
+
+    it 'is expected to have valide spotify_credential headers' do
       expect(headers['spotify_credentials'])
-      .to have_key('token')
-      .and have_key('refresh_token')
-      .and have_key('expires_at')
-      .and have_key('expires')
-    }
+        .to have_key('token')
+        .and have_key('refresh_token')
+        .and have_key('expires_at')
+        .and have_key('expires') 
+    end
   end
 
   describe 'WITHOUT "resource_class" in params' do
@@ -59,12 +62,14 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
       get '/auth/spotify/callback'
     end
 
-    it { is_expected.to have_http_status 200 }
+    it 'is expected responde with http status 200' do
+      is_expected.to have_http_status 200
+    end
 
-    it {
-      expect(json).to have_key('user').and have_key('spotify_info')
-    }
-
+    it 'is expected to responde with key user and spotify_info' do
+      expect(json)
+        .to have_key('user')
+        .and have_key('spotify_info')
+    end
   end
-
 end
