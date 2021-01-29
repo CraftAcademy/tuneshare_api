@@ -10,7 +10,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', require: 'rack/cors'
 gem 'rspotify'
 gem "omniauth", "~> 1.9.1"
-gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth-spotify'
 

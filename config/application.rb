@@ -37,10 +37,12 @@ module TuneshareApi
         origins '*'
         resource '*',
                  headers: :any,
+                 expose: %w[access-token expiry token-type uid client spotify_credentials],
                  methods: %i[get post put delete],
                  max_age: 0
       end
     end
-    config.hosts << "f8fd3bb4d238.ngrok.io"
+    config.hosts << 'f8fd3bb4d238.ngrok.io'
+    config.hosts << 'www.example.com'
   end
 end

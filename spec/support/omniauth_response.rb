@@ -7,7 +7,7 @@ module OmniAuthFixtures
       'info' =>
       { 'name' => 'Lara Thordardottir',
         'nickname' => '11133470713',
-        'email' => 'lara-thordar@hotmail.com',
+        'email' => 'lara@fakemail.com',
         'urls' => { 'spotify' => 'https://open.spotify.com/user/11133470713' },
         'image' =>
         'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/18920696_10154468874267665_3311690800281955732_n.jpg?oh=480b96eafd1897d08fd6b582a21de6a2&oe=5B0A2CB8',
@@ -26,7 +26,7 @@ module OmniAuthFixtures
       { 'raw_info' =>
         { 'country' => 'GB',
           'display_name' => 'Lara Thordardottir',
-          'email' => 'lara-thordar@hotmail.com',
+          'email' => 'lara@fakemail.com',
           'external_urls' => { 'spotify' => 'https://open.spotify.com/user/11133470713' },
           'followers' => { 'href' => nil, 'total' => 13 },
           'href' => 'https://api.spotify.com/v1/users/11133470713',
