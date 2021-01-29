@@ -302,7 +302,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   coveralls
-  devise
   devise_token_auth
   factory_bot_rails
   guard-rspec

@@ -19,7 +19,9 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
       get '/auth/spotify/callback'
     end
 
-    it { is_expected.to have_http_status 200 }
+    it 'is expected to have a 200 http status' do 
+      is_expected.to have_http_status 200
+    end
 
     it {
       expect(json).to have_key('user').and have_key('spotify_info')
