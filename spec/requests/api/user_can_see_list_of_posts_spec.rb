@@ -1,21 +1,11 @@
 RSpec.describe 'GET /api/posts', type: :request do
   let(:user) {create(:user)}
-  let!(:post) { 3.times { user {create(:post)} } }
-  subject { response }
-  let(:headers) { subject.headers }
-  let(:json) { response_json }
-  before do
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.before_callback_phase do |env|
-      env['omniauth.origin'] = 'https://example.com/'
-    end
-    OmniAuth.config.mock_auth[:spotify] = OmniAuth::AuthHash.new(OmniAuthFixtures.spotify_response)
-    Rails.application.env_config['devise.mapping'] = Devise.mappings[:user] # If using Devise
-    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:spotify]
-  end
+  let(:user_headers) {user.create_new_auth_token}
+  let!(:post) { 3.times { create(:post, user_id: user.id)} }
   describe 'successfully get a list of posts' do
     before do 
-      get '/api/posts'
+      get '/api/posts',
+      headers: user_headers
     end 
 
     it 'is expected to return a 200 response' do

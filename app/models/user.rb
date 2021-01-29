@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:spotify]
   include DeviseTokenAuth::Concerns::User
 
+  has_many :posts
 end
 

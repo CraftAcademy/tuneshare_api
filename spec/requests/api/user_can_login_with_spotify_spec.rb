@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 RSpec.describe 'GET /omniauth/spotify', type: :request do
   subject { response }
   let(:headers) { subject.headers }

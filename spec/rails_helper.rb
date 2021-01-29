@@ -11,7 +11,6 @@ require 'spec_helper'
 require 'webmock/rspec'
 require 'rspotify'
 
-
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
