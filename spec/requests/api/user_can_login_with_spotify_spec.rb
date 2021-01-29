@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe 'GET /omniauth/spotify', type: :request do
+  subject { response }
+  let(:headers) { subject.headers }
+  let(:json) { response_json }
   before do
     OmniAuth.config.test_mode = true
     OmniAuth.config.before_callback_phase do |env|
@@ -10,10 +13,7 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:user] # If using Devise
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:spotify]
   end
-  describe 'with resource_class in params' do
-    subject { response }
-    let(:headers) { subject.headers }
-    let(:json) { response_json }
+  describe 'WITH "resource_class" in params' do
     before do
       Rails.application.env_config['omniauth.params'] = { 'resource_class': 'User' }
       get '/auth/spotify/callback'
@@ -32,7 +32,6 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
       .and have_key('email')
       .and have_value('lara@fakemail.com')
     }
-
     it {
       expect(headers)
       .to have_key('access-token')
@@ -51,4 +50,19 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
       .and have_key('expires')
     }
   end
+
+  describe 'WITHOUT "resource_class" in params' do
+    before do
+      Rails.application.env_config['omniauth.params'] = { }
+      get '/auth/spotify/callback'
+    end
+
+    it { is_expected.to have_http_status 200 }
+
+    it {
+      expect(json).to have_key('user').and have_key('spotify_info')
+    }
+
+  end
+
 end
