@@ -9,6 +9,7 @@ end
 require 'rspec/rails'
 require 'spec_helper'
 require 'webmock/rspec'
+require 'rspotify'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -27,6 +28,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include ResponseJson
+  config.include OmniAuthFixtures, type: :request
   config.before(:each) do
     fixture_file = File.open("#{fixture_path}/search_results.json").read
     stub_request(

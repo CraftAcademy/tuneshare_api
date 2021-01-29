@@ -5,5 +5,6 @@ FactoryBot.define do
     image { "MyImage" }
     preview { "MyPreview" }
     description { "MyDescription" }
+    association :user
   end
 end

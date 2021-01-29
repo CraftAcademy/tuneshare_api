@@ -1,8 +1,11 @@
 RSpec.describe 'GET /api/posts', type: :request do
-  let!(:post) { 3.times { create(:post) } }
+  let(:user) {create(:user)}
+  let(:user_headers) {user.create_new_auth_token}
+  let!(:post) { 3.times { create(:post, user_id: user.id)} }
   describe 'successfully get a list of posts' do
     before do 
-      get '/api/posts'
+      get '/api/posts',
+      headers: user_headers
     end 
 
     it 'is expected to return a 200 response' do

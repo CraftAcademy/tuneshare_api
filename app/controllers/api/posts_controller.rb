@@ -1,11 +1,13 @@
 class Api::PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+
   def index
     posts = Post.all
     render json: { posts: posts }
   end
 
   def create
-    post = Post.create(post_params)
+    post = current_user.posts.create(post_params)
     if post.persisted?
       render json: { message: 'Your post was successfully created!' }, status: 201
     else
