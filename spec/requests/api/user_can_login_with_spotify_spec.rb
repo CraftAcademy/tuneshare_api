@@ -21,16 +21,19 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
     it { is_expected.to have_http_status 200 }
 
     it {
-      expect(json).to have_key('user').and have_key('spotify_info')
+      expect(json).to have_key('data')
+        .and have_key('oauth_info')
+        .and have_key('message')
     }
 
     it {
-      expect(json['spotify_info'])
-      .to have_key('name')
-      .and have_value('Lara Thordardottir')
-      .and have_key('email')
-      .and have_value('lara@fakemail.com')
+      expect(json['oauth_info'])
+        .to have_key('name')
+        .and have_value('Lara Thordardottir')
+        .and have_key('email')
+        .and have_value('lara@fakemail.com')
     }
+
     it {
       expect(headers)
         .to have_key('access-token')
@@ -38,11 +41,11 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
         .and have_key('token-type')
         .and have_key('expiry')
         .and have_key('uid')
-        .and have_key('spotify_credentials')
+        .and have_key('oauth_credentials')
     }
 
     it {
-      expect(headers['spotify_credentials'])
+      expect(headers['oauth_credentials'])
         .to have_key('token')
         .and have_key('refresh_token')
         .and have_key('expires_at')
@@ -60,8 +63,9 @@ RSpec.describe 'GET /omniauth/spotify', type: :request do
 
     it {
       expect(json)
-        .to have_key('user')
-        .and have_key('spotify_info')
+        .to have_key('data')
+        .and have_key('oauth_info')
+        .and have_key('message')
     }
   end
 end

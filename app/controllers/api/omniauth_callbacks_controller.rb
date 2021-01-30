@@ -15,7 +15,7 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
     response.set_header('client', auth_params[:client_id])
     response.set_header('expiry', auth_params[:expiry])
     response.set_header('uid', auth_params[:uid])
-    render json: { messsage: "success", data: @resource, oauth_info: auth_hash['info'] }
+    render json: { message: "success", data: @resource, oauth_info: auth_hash['info'] }
   end
 
   def validate_auth_origin_url_param
@@ -30,9 +30,15 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
     redirect_route = klass.build(host: request.host, port: request.port, path: path).to_s
   end
 
+  def get_resource_from_auth_hash
+    # here we would have to make sure that we have a connection to the Authorization model if
+    # we decide to use multiple authorizations
+    super
+  end
+
   def auth_hash
     @_auth_hash ||= session.to_h.with_indifferent_access['dta.omniauth.auth']
-    # session.delete('dta.omniauth.auth')
+    session.delete('dta.omniauth.auth')
     @_auth_hash
   end
 
