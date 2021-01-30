@@ -20,7 +20,26 @@ RSpec.describe 'POST /api/posts/:post_id/comments', type: :request do
     end
 
     it 'is expected to return the comment that was created' do
-      expect(existing_post.comments[0]['content']).to eq 'Awesome stuff!'
+      expect(response_json['comment']['content']).to eq 'Awesome stuff!'
+    end
+  end
+  describe 'unsuccessfully create a comment without content' do
+    before do
+      post "/api/posts/#{existing_post.id}/comments",
+           params: {
+             comment: {
+               post_id: existing_post.id,
+             }
+           },
+           headers: user_header
+    end
+
+    it 'is expected to return a 422 status' do
+      expect(response).to have_http_status 422
+    end
+
+    it 'is expected to return an error message' do
+      expect(response_json['message']).to eq "Content can't be blank"
     end
   end
 end
