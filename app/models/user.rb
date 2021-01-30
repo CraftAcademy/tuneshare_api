@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:spotify]
+         :omniauthable, omniauth_providers: [:spotify, :facebook]
   include DeviseTokenAuth::Concerns::User
 end

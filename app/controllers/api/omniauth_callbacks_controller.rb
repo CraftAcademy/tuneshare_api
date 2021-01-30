@@ -8,15 +8,14 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
     sign_in(:user, @resource, store: false, bypass: false)
 
     @resource.save!
-    response.set_header('spotify_credentials', auth_hash[:credentials]) # not sure about this at all
+    response.set_header('oauth_credentials', auth_hash[:credentials]) # not sure about this at all
     # DTA should do this for us?
     response.set_header('access-token', auth_params[:auth_token])
     response.set_header('token-type', 'Bearer')
     response.set_header('client', auth_params[:client_id])
     response.set_header('expiry', auth_params[:expiry])
     response.set_header('uid', auth_params[:uid])
-
-    render json: { user: @resource, spotify_info: auth_hash['info'] }
+    render json: { messsage: "success", data: @resource, oauth_info: auth_hash['info'] }
   end
 
   def validate_auth_origin_url_param
@@ -33,7 +32,7 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
 
   def auth_hash
     @_auth_hash ||= session.to_h.with_indifferent_access['dta.omniauth.auth']
-    session.delete('dta.omniauth.auth')
+    # session.delete('dta.omniauth.auth')
     @_auth_hash
   end
 
