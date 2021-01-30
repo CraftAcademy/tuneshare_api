@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User',
-  at: 'auth',
-  controllers: { omniauth_callbacks: 'api/omniauth_callbacks'}
+  mount_devise_token_auth_for 'User', 
+  at: 'auth', 
+  controllers: { omniauth_callbacks: 'api/omniauth_callbacks' }
   namespace :api do
-    resources :posts, only: [:index, :create]
+    resources :posts, only: %i[index create] do
+      resources :comments, only: [:create]
+    end
     resources :tracks, only: [:index]
     get 'omniauth_callbacks/spotify'
   end

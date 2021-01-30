@@ -1,6 +1,7 @@
 RSpec.describe 'POST /api/posts', type: :request do
-  let(:user) { create(:user)}
-  let(:user_header) {user.create_new_auth_token}
+  let(:user) { create(:user) }
+  let(:user_header) { user.create_new_auth_token }
+  
   describe 'successfully create a post' do
     before do
       post '/api/posts',

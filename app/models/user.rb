@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class User < ActiveRecord::Base
   extend Devise::Models
   devise :database_authenticatable, :registerable,
@@ -7,5 +8,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :posts
+  has_many :comments
 end
-
