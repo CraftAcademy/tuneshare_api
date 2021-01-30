@@ -10,8 +10,6 @@ RSpec.describe Post, type: :model do
   describe 'is expected to have validation' do
     it { is_expected.to validate_presence_of :track }
     it { is_expected.to validate_presence_of :artists }
-    it { is_expected.to validate_presence_of :image }
-    it { is_expected.to validate_presence_of :preview }
     it { is_expected.to validate_presence_of :description }
   end
 

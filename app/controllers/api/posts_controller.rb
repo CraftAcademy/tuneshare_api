@@ -2,7 +2,7 @@ class Api::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
 
   def index
-    posts = Post.all
+    posts = Post.order('created_at DESC')
     render json: { posts: posts }
   end
 
