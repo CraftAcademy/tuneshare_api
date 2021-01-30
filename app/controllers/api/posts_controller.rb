@@ -3,7 +3,7 @@ class Api::PostsController < ApplicationController
 
   def index
     posts = Post.order('created_at DESC')
-    render json: { posts: posts }
+    render json: posts, each_serializer: PostIndexSerializer
   end
 
   def create
