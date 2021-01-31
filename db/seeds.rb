@@ -21,3 +21,8 @@ Comment.create(user_id: 4, post_id: 1, content: 'Wow what a lovely song. This so
 Comment.create(user_id: 1, post_id: 1, content: 'I know! All the Swedish love this song!')
 Comment.create(user_id: 3, post_id: 2, content: 'Papaya Whip! What a lovely name! I only knew papaya whip color, but now I love this song too.')
 Comment.create(user_id: 2, post_id: 2, content: 'Papaya is sweet.')
+
+Like.create(user_id: 2, post_id: 1)
+Like.create(user_id: 3, post_id: 1)
+Like.create(user_id: 4, post_id: 6)
+Like.create(user_id: 1, post_id: 7)
