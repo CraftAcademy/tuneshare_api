@@ -31,7 +31,7 @@ module Api
       'User'.constantize
     end
 
-    def resource_class
+    def resource_class(mapping = nil)
       if omniauth_params[:resource_class]
         omniauth_params[:resource_class].constantize
       elsif params[:resource_class]

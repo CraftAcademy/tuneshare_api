@@ -16,3 +16,8 @@ Post.create(user_id: 2, track: 'Lavender Blush', artists: 'Nobuya Kobori', image
 Post.create(user_id: 3, track: 'Pink Salmon', artists: 'Peewee Longway', image: 'https://i.scdn.co/image/ab67616d0000b273ce38c038198b8666e03c3987', preview: 'https://p.scdn.co/mp3-preview/ccdb95d288576fc8fafa5ac47302e55806740b9f?cid=9165f2ed52ac4632b2c23038c2fbe1d9', description: 'I listen to this while Im eating my pink salmon. So tasty!')
 Post.create(user_id: 4, track: 'Peachpuff', artists: 'Jellymastermen', image: 'https://i.scdn.co/image/ab67616d0000b27331871632e947d529e0f19bdc', preview: 'https://p.scdn.co/mp3-preview/c76c3bae766a2f4e904b59d95b2c946172c0cfa9?cid=9165f2ed52ac4632b2c23038c2fbe1d9', description: 'Peach is one of my favorite fruits, even better when its a puff!')
 Post.create(user_id: 4, track: 'Aliceblue', artists: 'Karl J. Anderson', image: 'https://i.scdn.co/image/ab67616d0000b2739e9d728243e3b8752da1df8e', preview: 'https://p.scdn.co/mp3-preview/aee0d9d2203158226d012fff8e56ad86591a165c?cid=9165f2ed52ac4632b2c23038c2fbe1d9', description: 'I listen to this song when I feel blue(My name is Alice)')
+
+Comment.create(user_id: 4, post_id: 1, content: 'Wow what a lovely song. This song reminds me of good old days!')
+Comment.create(user_id: 1, post_id: 1, content: 'I know! All the Swedish love this song!')
+Comment.create(user_id: 3, post_id: 2, content: 'Papaya Whip! What a lovely name! I only knew papaya whip color, but now I love this song too.')
+Comment.create(user_id: 2, post_id: 2, content: 'Papaya is sweet.')

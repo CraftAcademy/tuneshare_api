@@ -12,6 +12,7 @@ gem 'rspotify'
 gem "omniauth", "~> 1.9.1"
 gem 'devise_token_auth'
 gem 'omniauth-spotify'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'pry-rails'
