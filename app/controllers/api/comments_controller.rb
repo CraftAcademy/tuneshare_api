@@ -1,6 +1,4 @@
 class Api::CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index create]
-
   def index
     comments = Comment.all
     render json: comments, each_serializer: CommentsIndexSerializer

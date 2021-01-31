@@ -1,6 +1,4 @@
 class Api::PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index create]
-
   def index
     posts = Post.order('created_at DESC')
     render json: posts, each_serializer: PostIndexSerializer
