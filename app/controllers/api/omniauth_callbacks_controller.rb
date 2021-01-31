@@ -6,8 +6,16 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
     set_token_on_resource
     create_auth_params
     sign_in(:user, @resource, store: false, bypass: false)
-
-    @resource.save!
+    # This is a hack to allow multiple OAuth sources
+    # we couldd also respond with a message that the user already exists and should choose to login using
+    # the origina OAuth provider. 
+    begin
+      @resource.save!
+    rescue ActiveRecord::RecordNotUnique => e
+      @resource = resource_class.where(
+        email: auth_hash['info']['email']
+      ).first
+    end
     response.set_header('oauth_credentials', auth_hash[:credentials]) # not sure about this at all
     # DTA should do this for us?
     response.set_header('access-token', auth_params[:auth_token])
@@ -15,7 +23,7 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
     response.set_header('client', auth_params[:client_id])
     response.set_header('expiry', auth_params[:expiry])
     response.set_header('uid', auth_params[:uid])
-    render json: { message: "success", data: @resource, oauth_info: auth_hash['info'] }
+    render json: { message: 'success', data: @resource, oauth_info: auth_hash['info'] }
   end
 
   def validate_auth_origin_url_param
@@ -24,16 +32,26 @@ class Api::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
 
   protected
 
-  def get_redirect_route(_devise_mapping)
-    path = "/auth/#{params[:provider]}/callback"
-    klass = request.scheme == 'https' ? URI::HTTPS : URI::HTTP
-    redirect_route = klass.build(host: request.host, port: request.port, path: path).to_s
-  end
-
   def get_resource_from_auth_hash
     # here we would have to make sure that we have a connection to the Authorization model if
     # we decide to use multiple authorizations
-    super
+    @resource = resource_class.where(
+      uid: auth_hash['uid'],
+      provider: auth_hash['provider']
+    ).first_or_initialize
+
+    handle_new_resource if @resource.new_record?
+
+    # sync user info with provider, update/generate auth token
+    assign_provider_attrs(@resource, auth_hash)
+
+    # assign any additional (whitelisted) attributes
+    if assign_whitelisted_params?
+      extra_params = whitelisted_params
+      @resource.assign_attributes(extra_params) if extra_params
+    end
+
+    @resource
   end
 
   def auth_hash
