@@ -6,7 +6,11 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
   describe 'successfully like a post' do
     before do
       post "/api/posts/#{existing_post.id}/likes",
-           params: { post_id: existing_post.id },
+           params: {
+             like: {
+               post_id: existing_post.id
+             }
+           },
            headers: user_header
     end
 
