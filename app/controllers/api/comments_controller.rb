@@ -1,6 +1,11 @@
 class Api::CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[index create]
 
+  def index
+    comments = Comment.all
+    render json: comments, each_serializer: CommentsIndexSerializer
+  end
+
   def create
     comment = current_user.comments.create(comment_params)
     if comment.persisted?
