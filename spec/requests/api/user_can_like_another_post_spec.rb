@@ -22,6 +22,7 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
       expect(existing_post.likes.count).to eq 1
     end
   end
+
   describe 'unsuccessfully when user already liked the post' do
     before do
       2.times do
