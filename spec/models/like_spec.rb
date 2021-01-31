@@ -1,5 +1,7 @@
-require 'rails_helper'
-
 RSpec.describe Like, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Factory Bot' do
+    it 'is expected to be valid' do
+      expect(create(:like)).to be_valid
+    end
+  end
 end
