@@ -15,5 +15,10 @@ RSpec.describe 'DELETE /api/posts/:post_id', type: :request do
     it 'is expected to return success message' do
       expect(response_json['message']).to eq "Your post has been deleted!"
     end
+
+    it 'is expected to not return a post'do
+      binding.pry
+      expect(Post).to eq []
+    end
   end
 end
