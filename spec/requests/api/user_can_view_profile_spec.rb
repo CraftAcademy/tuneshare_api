@@ -21,7 +21,7 @@ RSpec.describe 'GET /api/users/:user_id', type: :request do
       expect(response_json['user']['posts'][0]['track']).to eq 'MyTrack'
     end
 
-    it 'is expected to return the descrption of the post' do
+    it 'is expected to return the description of the post' do
       expect(response_json['user']['posts'][0]['description']).to eq 'MyDescription'
     end
   end
