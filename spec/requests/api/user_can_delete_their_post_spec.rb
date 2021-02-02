@@ -17,7 +17,6 @@ RSpec.describe 'DELETE /api/posts/:post_id', type: :request do
     end
 
     it 'is expected to not return a post'do
-      binding.pry
       expect(Post).to eq []
     end
   end
