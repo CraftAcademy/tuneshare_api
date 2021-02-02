@@ -5,7 +5,7 @@ RSpec.describe 'DELETE /api/posts/:post_id', type: :request do
   describe 'successfully delete their post' do
     before do
       delete "/api/posts/#{post.id}",
-             params: {post_id: post.id},
+             params: { post_id: post.id },
              headers: user_header
     end
 
@@ -13,12 +13,8 @@ RSpec.describe 'DELETE /api/posts/:post_id', type: :request do
       expect(response).to have_http_status 204
     end
 
-    it 'is expected to return a :no_content status' do
-      expect(response).to have_http_status :no_content
-    end
-
-    it 'is expected to not return a post'do
-      expect(response.body).to eq ""
+    it 'is expected to not return a post' do
+      expect(response.body).to eq ''
     end
   end
 end

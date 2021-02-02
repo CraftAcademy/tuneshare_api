@@ -1,5 +1,4 @@
 class Api::PostsController < ApplicationController
-
   def index
     posts = Post.order('created_at DESC')
     render json: posts, each_serializer: PostIndexSerializer
@@ -17,6 +16,8 @@ class Api::PostsController < ApplicationController
   def destroy
     Post.find(params[:post_id]).destroy!
     head :no_content
+  rescue StandardError => e
+    render json: { message: 'Oops, something went very wrong...' }, status: 404
   end
 
   private
