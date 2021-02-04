@@ -24,16 +24,21 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
   end
 
   describe 'successfully unlike a post' do
-    before do
-      2.times do
+    before do    
         post "/api/posts/#{existing_post.id}/likes",
              params: {
                like: {
                  post_id: existing_post.id
                }
              },
+             headers: user_header,
+             delete "/api/posts/#{existing_post.id}/likes",
+             params: {
+               like: {
+                 post_id: existing_post.id
+               }
+             },
              headers: user_header
-      end
     end
 
     it 'is expected to return a 200 status' do
@@ -41,6 +46,8 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
     end
 
     it 'is expected to decrease like count back to 0' do
+
+      binding.pry
       expect(existing_post.likes.count).to eq 0
     end
   end
