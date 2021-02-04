@@ -3,6 +3,7 @@ class Api::LikesController < ApplicationController
     if already_liked?
       like = Like.where(user_id: current_user.id, post_id: params[:post_id])
       Like.destroy(like.ids)
+      render status: 204
     else
       like = current_user.likes.create(like_params)
       render status: 201 if like.persisted?
