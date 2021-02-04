@@ -4,7 +4,6 @@ class Api::LikesController < ApplicationController
   def create
     if already_liked?
       destroy
-      # render json: { message: "You can't like more than once" }, status: 422
     else
     like = current_user.likes.create(like_params)
     render status: 201 
@@ -12,19 +11,14 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
-    if already_liked?
-      render json: { message: "You can't destoy me!!!" }, status: 422
-    else 
-      @like = current_user.likes.find(params[:id])   #destroy(like_params) 
-      @like.destroy
-      # render status: 200
-    end
+      like = current_user.likes.destroy(like_params)
+      render status: 200
   end
 
   private
 
   def find_like
-    likes = Post.likes.find(params[:id])
+    Like.find(params[:id])
   end
 
   def like_params
