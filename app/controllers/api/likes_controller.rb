@@ -6,7 +6,7 @@ class Api::LikesController < ApplicationController
       destroy
     else
       like = current_user.likes.create(like_params)
-      render status: 201 
+      render status: 201 if like.persisted?
     end
   end
 
