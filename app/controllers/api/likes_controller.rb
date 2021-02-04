@@ -12,8 +12,6 @@ class Api::LikesController < ApplicationController
 
   def destroy
       Like.destroy(find_like[:id])
-      # like = current_user.likes.destroy(like_params)
-      # render status: 200
   end
 
   private
