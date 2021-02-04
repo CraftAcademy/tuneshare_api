@@ -11,7 +11,7 @@ class Api::LikesController < ApplicationController
   end
 
   def destroy
-      Like.destroy(find_like[:id])
+    Like.destroy(find_like[:id])
   end
 
   private

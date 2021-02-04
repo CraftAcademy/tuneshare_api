@@ -41,7 +41,7 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
     end
 
     it 'is expected to decrease like count back to 0' do
-      expect(existing_post.likes.count).to eq 0
+      expect(Likes.count).to eq 0
     end
   end
 end
