@@ -5,14 +5,15 @@ class Api::LikesController < ApplicationController
     if already_liked?
       destroy
     else
-    like = current_user.likes.create(like_params)
-    render status: 201 
+      like = current_user.likes.create(like_params)
+      render status: 201 
     end
   end
 
   def destroy
-      like = current_user.likes.destroy(like_params)
-      render status: 200
+      Like.destroy(find_like[:id])
+      # like = current_user.likes.destroy(like_params)
+      # render status: 200
   end
 
   private

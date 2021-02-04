@@ -37,7 +37,7 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
     end
 
     it 'is expected to return a 200 status' do
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status 204
     end
 
     it 'is expected to decrease like count back to 0' do
