@@ -23,25 +23,25 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
     end
   end
 
-  describe 'unsuccessfully when user already liked the post' do
-    before do
-      2.times do
-        post "/api/posts/#{existing_post.id}/likes",
+  describe 'successfully unlike a post' do
+    let!(:existing_post) { create(:post) }
+    let!(:like) { create(:like, post_id: existing_post.id) }
+    before do    
+        delete "/api/posts/#{existing_post.id}/likes/#{like.id}",
              params: {
                like: {
                  post_id: existing_post.id
                }
              },
              headers: user_header
-      end
     end
 
-    it 'is expected to return a 422 status' do
-      expect(response).to have_http_status 422
+    it 'is expected to return a 204 status' do
+      expect(response).to have_http_status 204
     end
 
-    it 'is expected to return an error message' do
-      expect(response_json['message']).to eq "You can't like more than once"
+    it 'is expected to decrease like count back to 0' do
+      expect(Like.count).to eq 0
     end
   end
 end
