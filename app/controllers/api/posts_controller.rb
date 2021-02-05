@@ -14,7 +14,7 @@ class Api::PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:post_id]).destroy!
+    Post.find(params[:id]).destroy!
     head :no_content
   rescue StandardError => e
     render json: { message: 'Oops, something went very wrong...' }, status: 404
