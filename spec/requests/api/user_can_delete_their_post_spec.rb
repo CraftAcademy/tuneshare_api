@@ -1,12 +1,9 @@
 RSpec.describe 'DELETE /api/posts/:post_id', type: :request do
-  let(:user) { create(:user) }
-  let(:user_header) { user.create_new_auth_token }
-  let!(:post) { create(:post, user_id: user.id) }
+  let!(:post) { create(:post) }
   describe 'successfully delete their post' do
     before do
       delete "/api/posts/#{post.id}",
-             params: { post_id: post.id },
-             headers: user_header
+             params: { post_id: post.id }
     end
 
     it 'is expected to return a 204 status' do
