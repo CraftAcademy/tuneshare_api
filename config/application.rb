@@ -42,7 +42,8 @@ module TuneshareApi
                  max_age: 0
       end
     end
-    config.hosts << 'f8fd3bb4d238.ngrok.io'
-    config.hosts << 'www.example.com'
+    config.hosts << 'tuneshare-2021.herokuapp.com'
+    # config.hosts << 'www.example.com'
+    # config.hosts.clear
   end
 end
