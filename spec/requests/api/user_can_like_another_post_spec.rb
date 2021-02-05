@@ -25,15 +25,16 @@ RSpec.describe 'POST /api/posts/:post_id/likes', type: :request do
 
   describe 'successfully unlike a post' do
     let!(:existing_post) { create(:post) }
-    let!(:like) { create(:like, post_id: existing_post.id) }
-    before do    
-        delete "/api/posts/#{existing_post.id}/likes/#{like.id}",
+    before do
+      2.times do
+        post "/api/posts/#{existing_post.id}/likes",
              params: {
                like: {
                  post_id: existing_post.id
                }
              },
              headers: user_header
+      end
     end
 
     it 'is expected to return a 204 status' do
