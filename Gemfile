@@ -13,6 +13,7 @@ gem "omniauth", "~> 1.9.1"
 gem 'devise_token_auth'
 gem 'omniauth-spotify'
 gem 'omniauth-facebook'
+gem 'rest-client'
 
 group :development, :test do
   gem 'pry-rails'

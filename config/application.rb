@@ -32,17 +32,25 @@ module TuneshareApi
       generate.controller_specs false
       generate.request_specs false
     end
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'localhost:3001', 'c99f0c11f54d.ngrok.io'
         resource '*',
                  headers: :any,
                  expose: %w[access-token expiry token-type uid client spotify_credentials],
-                 methods: %i[get post put delete],
+                 methods: %i[get post put delete options],
                  max_age: 0
       end
     end
-    config.hosts << 'f8fd3bb4d238.ngrok.io'
-    config.hosts << 'www.example.com'
+    config.hosts << 'c99f0c11f54d.ngrok.io'
+    config.action_dispatch.default_headers = {
+      'Referrer-Policy' => 'no-referrer-when-downgrade',
+      'X-Content-Type-Options' => 'nosniff',
+      'X-Frame-Options' => 'SAMEORIGIN',
+      'X-XSS-Protection' => '1; mode=block',
+      "Access-Control-Allow-Origin" => 'localhost:3001',
+      "Access-Control-Allow-Headers" => "Origin, X-Requested-With, Content-Type, Accept"
+    }
   end
 end
