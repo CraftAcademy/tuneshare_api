@@ -8,6 +8,5 @@ Rails.application.routes.draw do
     end
     resources :tracks, only: [:index]
     resources :users, only: [:show]
-    get 'omniauth_callbacks/spotify'
   end
 end
