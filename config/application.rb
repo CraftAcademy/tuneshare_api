@@ -35,7 +35,7 @@ module TuneshareApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3001', 'c99f0c11f54d.ngrok.io'
+        origins 'localhost:3001', 'c99f0c11f54d.ngrok.io', 'tuneshare-2021.herokuapp.com'
         resource '*',
                  headers: :any,
                  expose: %w[access-token expiry token-type uid client spotify_credentials],
