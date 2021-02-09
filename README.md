@@ -23,6 +23,7 @@ rails db:create db:migrate db:seed
 ```
 
 4. start the server
+(the application is deployed on Heroku, so this is also optional)
 
 ```
 rails s
@@ -50,7 +51,7 @@ gem 'active_model_serializers'
 gem 'omniauth-facebook'
 gem 'rest-client'
 ```
-for testing we use 
+for testing
 ```
 gem 'pry-rails'
 gem 'pry-byebug'
