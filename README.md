@@ -34,33 +34,33 @@ rails s
 
 - [Tune Share Client](https://github.com/CraftAcademy/tuneshare_client)
 
-## Gems
+## Dependencies
 
 We are using Ruby version '2.5.1'
-```
-gem 'rails', '~> 6.0.0'
-gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.1'
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rack-cors', require: 'rack/cors'
-gem 'rspotify'
-gem "omniauth", "~> 1.9.1"
-gem 'devise_token_auth'
-gem 'omniauth-spotify'
-gem 'active_model_serializers'
-gem 'omniauth-facebook'
-gem 'rest-client'
-```
-for testing
-```
-gem 'pry-rails'
-gem 'pry-byebug'
-gem 'rspec-rails'
-gem 'shoulda-matchers'
-gem 'factory_bot_rails'
-gem 'coveralls', require: false
-gem 'webmock'
-```
+
+* Rails
+* Pg 
+* Puma
+* Bootsnap
+* Rack-cors
+* RSpotify
+* Omniauth
+* Devise_token_auth
+* Omniauth-spotify
+* Active_model_serializers
+* Omniauth-facebook
+* Rest-client
+
+For testing
+
+* Pry-rails
+* Pry-byebug
+* RSpec-rails
+* Shoulda-matchers
+* Factory_bot_rails
+* Coveralls
+* Webmock
+
 ## Acknowledgements
 
 - [Craft Academy](https://www.craftacademy.se/) coaches: [Thomas Ochman](https://github.com/tochman) and [Emma-Maria Thalen](https://github.com/emtalen)
